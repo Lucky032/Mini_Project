@@ -1,0 +1,43 @@
+/* Ensure the body background covers the whole viewport */
+body {
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0; /* Ensure no default margin */
+    text-align: center; /* Center text inside the body */
+}
+
+/* Styling for the main heading */
+h1 {
+    color: white; /* Text color for the heading */
+    font-size: 2rem; /* Adjust font size if needed */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Styling for dashboard buttons */
+.dashboard-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none; /* Fixed from 'white' to 'none' */
+    border-radius: 5px;
+}
+
+.dashboard-btn:hover {
+    background-color: #00c8ff;
+}
+
+/* Optional: Style the logout link */
+a[href="{{ url_for('logout') }}"] {
+    display: block; /* Make sure it's on its own line */
+    margin-top: 20px; /* Space above the logout link */
+    color: white; /* Color for the logout link */
+    text-decoration: none; /* Remove underline from the link */
+}

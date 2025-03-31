@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="../static/css/registration.css"> <!-- Corrected path to CSS file -->
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Registration</h1>
+        <!-- Optionally, keep the image within the form -->
+        <img src="../static/images/cricket.png" alt="Cricket Image"> <!-- Corrected path to image -->
+
+        <form id="registration-form" action="/submit_registration" method="POST">
+            <label for="user-type">Register as:</label>
+            <select id="user-type" name="user-type">
+                <option value="coach">Coach</option>
+                <option value="player">Player</option>
+            </select>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <label for="phone-number">Phone Number:</label>
+            <input type="tel" id="phone-number" name="phone-number" pattern="[0-9]{10}" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Get the selected user type
+            const userType = document.getElementById('user-type').value;
+
+            // Redirect based on user type
+            if (userType === "coach") {
+                window.location.href = "/coach_dashboard.html";
+            } else if (userType === "player") {
+                window.location.href = "/player_dashboard.html";
+            }
+        });
+    </script>
+</body>
+</html>

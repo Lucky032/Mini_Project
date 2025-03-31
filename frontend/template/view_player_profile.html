@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Profile</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .profile-info {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+       
+        
+        {% if player_profile %}
+        
+            <div class="profile-info">
+                <h2>{{ player_profile.first_name }} {{ player_profile.last_name }}</h2>
+                
+                <p><strong>Date of Birth:</strong> {{ player_profile.date_of_birth }}</p>
+                <p><strong>Gender:</strong> {{ player_profile.gender }}</p>
+                <p><strong>Home Address:</strong> {{ player_profile.home_address }}</p>
+                <p><strong>Street Address:</strong> {{ player_profile.street_address }}</p>
+                <p><strong>City:</strong> {{ player_profile.city }}</p>
+                <p><strong>State:</strong> {{ player_profile.state }}</p>
+                <p><strong>Pincode:</strong> {{ player_profile.pincode }}</p>
+                <p><strong>Playing Experience:</strong> {{ player_profile.playing_experience }}</p>
+                <p><strong>Teams Played:</strong> {{ player_profile.teams_played }}</p>
+                <p><strong>Game:</strong> {{ player_profile.game }}</p>
+                <p><strong>Height:</strong> {{ player_profile.height }}</p>
+                <p><strong>Weight:</strong> {{ player_profile.weight }}</p>
+                <p><strong>Comments:</strong> {{ player_profile.comments }}</p>
+                
+                <h3>Documents</h3>
+                <p><strong>Resume:</strong> 
+                    {% if player_profile.resume %} 
+                    <a href="{{ url_for('uploads', filename=player_profile.resume.replace('\\', '/')) }}">View Resume</a>
+
+                    {% else %} 
+                        Resume not available 
+                    {% endif %} 
+                </p>
+                <p><strong>Profile Photo:</strong> 
+                    {% if player_profile.profile_photo %} 
+                        <img src="{{ url_for('uploads', filename=player_profile.profile_photo.replace('\\', '/')) }}" alt="Profile Photo" /> 
+                    {% else %} 
+                        Profile Photo not available 
+                    {% endif %} 
+                </p>
+                <p><strong>Player Video:</strong> 
+                    {% if player_profile.player_video %} 
+                        <a href="{{ url_for('uploads', filename=player_profile.player_video.replace('\\', '/')) }}" target="_blank">Open Video</a>
+                    {% else %} 
+                        Player Video not available 
+                    {% endif %} 
+                </p>
+                
+            <h4>Certificates:</h4> 
+                <ul> 
+                    {% for certificate in player_profile.certificates.split(',') %} 
+                        <li> 
+                            {% if certificate %} 
+                                <a href="{{ url_for('uploads', filename=certificate.replace('\\', '/')) }}" target="_blank">View Certificate</a> 
+                            {% else %} 
+                                Certificate not available 
+                            {% endif %} 
+                        </li> 
+                    {% endfor %} 
+                </ul>
+            </div>
+            
+            <!-- Navigation buttons -->
+            <div>
+                {% if profile_index > 0 %}
+                    <a href="{{ url_for('view_player_profile', index=profile_index - 1) }}">Previous</a>
+                {% endif %}
+                {% if profile_index < total_profiles - 1 %}
+                    <a href="{{ url_for('view_player_profile', index=profile_index + 1) }}">Next</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>No player profile available.</p>
+        {% endif %}
+        
+        <a href="{{ url_for('base') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Sports Club</title>
+
+    <!-- Boxicons CDN -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_styles.css') }}">
+</head>
+
+<body>
+    <!-- Home Page Wrapper -->
+    <div class="home-wrapper">
+        <div class="welcome-section">
+            <h1 class="title animation">Welcome to Indian Sports Club</h1>
+            <p class="subtext animation">Join us in discovering and nurturing India's sports talent!</p>
+        </div>
+
+        <!-- Register Options -->
+        <div class="register-options">
+            <!-- Register as Coach -->
+            <a href="{{ url_for('register') }}?role=coach">
+                <button class="btn coach animation">Register as Coach</button>
+            </a>
+            
+            <!-- Register as Player -->
+            <a href="{{ url_for('register') }}?role=player">
+                <button class="btn player animation">Register as Player</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Script.js -->
+    <script src="{{ url_for('static', filename='js/home_scripts.js') }}"></script>
+</body>
+
+</html>

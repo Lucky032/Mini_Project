@@ -1,0 +1,20 @@
+<!-- profiles.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles</title>
+</head>
+<body>
+    <h1>Your Profile</h1>
+    {% if profiles %}
+        <ul>
+            {% for profile in profiles %}
+                <li>{{ profile.username }} - {{ profile.attribute1 }} - {{ profile.attribute2 }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No profiles available.</p>
+    {% endif %}
+</body>
+</html>

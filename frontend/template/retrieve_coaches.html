@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Coach Details</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Game</th>
+            <th>Experience</th>
+            <!-- Add other fields as necessary -->
+        </tr>
+        {% for coach in coaches %}
+        <tr>
+            <td>{{ coach.id }}</td>
+            <td>{{ coach.FirstName }} {{ coach.LastName }}</td>
+            <td>{{ coach.Game }}</td>
+            <td>{{ coach.CoachingExperience }}</td>
+            <!-- Add other fields as necessary -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/css/login.css"> <!-- Corrected relative path -->
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="login-form" action="submit_login" method="POST">
+            <label for="user-type"><b>Login as:</b></label>
+            <select id="user-type" name="user-type" onchange="showLoginFields()">
+                <option value="player">Player</option>
+                <option value="coach">Coach</option>
+            </select>
+
+            <div id="common-fields">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function showLoginFields() {
+            const userType = document.getElementById('user-type').value;
+            const emailLabel = document.querySelector('label[for="email"]');
+            const passwordLabel = document.querySelector('label[for="password"]');
+            
+            if (userType === 'player') {
+                emailLabel.textContent = 'Player Email:';
+                passwordLabel.textContent = 'Player Password:';
+            } else if (userType === 'coach') {
+                emailLabel.textContent = 'Coach Email:';
+                passwordLabel.textContent = 'Coach Password:';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', showLoginFields);
+    </script>
+</body>
+</html>

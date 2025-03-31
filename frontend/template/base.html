@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+    <header>
+        <h1><mark>Welcome, {{ username }}!</mark></h1>
+    </header>
+    <nav>
+        {% if role == 'coach' %}
+            <a href="{{ url_for('coach_dashboard') }}" class="dashboard-btn">Coach Dashboard</a>
+            <a href="{{ url_for('view_player_profile', index=0) }}" class="dashboard-btn">View Player Profile</a>
+
+        {% elif role == 'player' %}
+            <a href="{{ url_for('player_dashboard') }}" class="dashboard-btn">Player Dashboard</a>
+            <a href="{{ url_for('view_coach_profile') }}" class="dashboard-btn">View Coach Profile</a>
+        {% endif %}
+        <a href="{{ url_for('logout') }}" class="dashboard-btn">Logout</a>
+    </nav>
+</body>
+</html>

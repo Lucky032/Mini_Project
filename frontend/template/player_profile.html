@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <title>{{ game | capitalize }} Player Profiles</title>
+</head>
+<body>
+    <header>
+        <h1>{{ game | capitalize }} Player Profiles</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Back to Dashboard</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Players:</h2>
+        <ul>
+            {% for player in player_list %}
+                <li><a href="{{ player | lower }}.html">{{ player }}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sports Talent Platform</p>
+    </footer>
+</body>
+</html>

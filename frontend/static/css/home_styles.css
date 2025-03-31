@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --white: #fff;
+    --black: #000;
+    --lightBlue: #17a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom CSS for Home Page */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    height: 100vh;
+    display: flex;
+    background-image: url('../images/nig_spo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0; /* Ensure no default margin */
+    text-align: center; /* Center text inside the body */
+    justify-content: center;
+    align-items: center;
+}
+
+.home-wrapper {
+    text-align: center;
+    color: #fff;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    animation: fadeIn 1s ease forwards;
+}
+
+.subtext {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.register-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    border-radius: 5px;
+    transition: transform 0.4s ease, background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f1c40f;
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page sliding transition effect */
+.slide-out {
+    animation: slide-out 0.3s forwards ease-in-out;
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

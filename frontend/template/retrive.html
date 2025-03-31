@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/retrive.css') }}">
+    <title>Coach Dashboard</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Coach Dashboard</h1>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section>
+            <h2>Player Profiles</h2>
+            <p>Select a game to view player profiles:</p>
+            <!-- Form to select game -->
+            <form action="{{ url_for('view_players_by_game') }}" method="GET">
+                <label for="game-select">Choose a game:</label>
+                <select id="game-select" name="game" required>
+                    <option value="">--Select a Game--</option>
+                    <option value="football">Football</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="hockey">Hockey</option>
+                    <option value="badminton">Badminton</option>
+                    <option value="tennis">Tennis</option>
+                    <option value="kabaddi">Kabaddi</option>
+                    <option value="chess">Chess</option>
+                    <option value="athletics">Athletics</option>
+                </select>
+                <button type="submit">View Players</button>
+            </form>
+        </section>
+
+        <!-- Player Profiles Section (Dynamic Content) -->
+        <section id="player-profiles">
+            <h3>Available Players:</h3>
+            <ul>
+                {% if players %}
+                 fetch from playerprofile
+                    {% for player in players %}
+                        <li>
+                            <a href="{{ url_for('view_players_by_game', player_id=player.id) }}">
+                                {{ player.name }}
+                            </a> - {{ player.game }}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No players found for this game.</li>
+                {% endif %}
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Sports Talent Platform</p>
+    </footer>
+</body>
+</html>

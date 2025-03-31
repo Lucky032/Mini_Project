@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .profile-info {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-section {
+            margin-bottom: 20px;
+        }
+        
+        .profile-section h3 {
+            margin-top: 0;
+        }
+        
+        .document-link {
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if coach_profile %}
+            <div class="profile-info">
+                <h2>{{ coach_profile.first_name }} {{ coach_profile.last_name }}</h2>
+                
+                <div class="profile-section">
+                    <h3>Personal Details</h3>
+                    <p><strong>Date of Birth:</strong> {{ coach_profile.date_of_birth }}</p>
+                    <p><strong>Gender:</strong> {{ coach_profile.gender }}</p>
+                    <p><strong>Home Address:</strong> {{ coach_profile.home_address }}</p>
+                    <p><strong>City:</strong> {{ coach_profile.city }}</p>
+                    <p><strong>State:</strong> {{ coach_profile.state }}</p>
+                    <p><strong>Pincode:</strong> {{ coach_profile.pincode }}</p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3>Experience</h3>
+                    <p><strong>Playing Experience:</strong> {{ coach_profile.playing_experience }}</p>
+                    <p><strong>Coaching Experience:</strong> {{ coach_profile.coaching_experience }}</p>
+                    <p><strong>Teams Played:</strong> {{ coach_profile.teams_played }}</p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3>Game Details</h3>
+                    <p><strong>Game:</strong> {{ coach_profile.game }}</p>
+                    <p><strong>Height:</strong> {{ coach_profile.height }}</p>
+                    <p><strong>Weight:</strong> {{ coach_profile.weight }}</p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3>Comments</h3>
+                    <p>{{ coach_profile.comments }}</p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3>Documents</h3>
+                    <p><strong>Resume:</strong> 
+                        {% if coach_profile.resume %}
+                            <a href="{{ url_for('uploads1', filename=coach_profile.resume.replace('\\', '/')) }}"  target="_blank">View resume</a> 
+                               
+                        {% else %}
+                            Resume not available
+                        {% endif %}
+                    </p>
+                    
+                    <p><strong>Profile Photo:</strong> 
+                        {% if coach_profile.profile_photo %}
+                            <img src="{{ url_for('uploads1', filename=coach_profile.profile_photo.replace('\\', '/')) }}" 
+                                 alt="Coach Profile Photo" />
+                        {% else %}
+                            Profile Photo not available
+                        {% endif %}
+                    </p>
+                    
+                    <p><strong>Certificates:</strong>
+                        <ul>
+                            {% for certificate in coach_profile.certificates.split(',') %}
+                                <li>
+                                    {% if certificate.strip() %}  <!-- Added strip() to remove extra spaces -->
+                                        <a href="{{ url_for('uploads1', filename=certificate.replace('\\', '/').strip()) }}"  target="_blank">View Certificate</a> 
+                                          
+                                    {% else %}
+                                        Certificate not available
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    
+                </div>
+            </div>
+            
+            <!-- Navigation buttons -->
+            <div>
+                {% if profile_index > 0 %}
+                    <a href="{{ url_for('view_coach_profile', index=profile_index - 1) }}">Previous</a>
+                {% endif %}
+                {% if profile_index < total_profiles - 1 %}
+                    <a href="{{ url_for('view_coach_profile', index=profile_index + 1) }}">Next</a>
+                {% endif %}
+            </div>
+            
+            <a href="{{ url_for('base') }}">Back to Dashboard</a>
+        
+        {% else %}
+            <p>No coach profile found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

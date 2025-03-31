@@ -1,0 +1,60 @@
+/* Apply a full background image to the entire page */
+body {
+    background-image: url('../static/images/your-background-image.jpg'); /* Relative path to background image */
+    background-size: cover; /* Ensures the background image covers the entire page */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents repeating the background image */
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Registration form container styling */
+.registration-container {
+    background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Image styling (optional) */
+img {
+    max-width: 100%; /* Ensures the image does not overflow */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label, input, select, button {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Button styling with hover effect */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #45a049;
+}

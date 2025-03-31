@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="retrive.css"> <!-- Link to your CSS file -->
+    <title>Player Profile</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <h1>Player Profile</h1>
+    
+    <!-- Main Content Section -->
+    <main>
+        <section id="player-details">
+            {% if player %}
+                <h2>{{ player.name }}</h2>
+                <p><strong>Game:</strong> {{ player.game }}</p>
+                <p><strong>Age:</strong> {{ player.age }}</p>  <!-- Example additional detail -->
+                <p><strong>Position:</strong> {{ player.position }}</p> <!-- Example additional detail -->
+                <p><strong>Achievements:</strong> {{ player.achievements }}</p> <!-- Example additional detail -->
+                
+                <a href="{{ url_for('view_players_by_game', game=player.game.lower()) }}">Back to {{ player.game }} Players</a>
+            {% else %}
+                <p>Player not found.</p>
+                <a href="{{ url_for('home') }}">Go back to Home</a>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Sports Talent Platform</p>
+    </footer>
+</body>
+</html>
